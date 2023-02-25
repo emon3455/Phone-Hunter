@@ -116,6 +116,4 @@ document.getElementById("btn-showAll").addEventListener("click",()=>{
     document.getElementById("search-input").value="";
 });
 
-
-
 loadData("iphone",12);
