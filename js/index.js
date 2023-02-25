@@ -55,7 +55,7 @@ const displayData=(data, limit)=>{
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                     </p>
-                    <button class="btn btn-primary"> More Information </button>
+                    <button onclick="loadMoreInfo('${phone.slug}')" class="btn btn-primary"> More Information </button>
                 </div>
             </div>
         `;
@@ -67,7 +67,16 @@ const displayData=(data, limit)=>{
 
 }
 
+const loadMoreInfo= async (id)=>{
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`
+    const res = await fetch(url);
+    const data = await res.json();
+    DisplayMoreInformation(data.data);
+}
 
+const DisplayMoreInformation=(data)=>{
+    console.log(data);
+}
 
 const isloading=(value)=>{
     const spinner = document.getElementById("spinner");
@@ -85,11 +94,19 @@ document.getElementById("search-btn").addEventListener("click",()=>{
     findDataStart(12);
 });
 
+// search button enter event handle:
+document.getElementById('search-input').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        findDataStart(12);
+    }
+});
+
 // btn show all :
 document.getElementById("btn-showAll").addEventListener("click",()=>{
     findDataStart();
     document.getElementById("search-input").value="";
 });
+
 
 
 // loadData();
