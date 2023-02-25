@@ -19,7 +19,13 @@ const displayData=(data)=>{
     phoneContainer.innerHTML="";
 
     // show search results with toggle messages:
-    console.log(data);
+    const noResult = document.getElementById("no-result");
+    if(data.length===0){
+        noResult.classList.remove("d-none");
+    }
+    else{
+        noResult.classList.add("d-none");
+    }
 
     // show all phones
     data.forEach(phone =>{
