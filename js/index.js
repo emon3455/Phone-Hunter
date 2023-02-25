@@ -55,7 +55,7 @@ const displayData=(data, limit)=>{
                     <h5 class="card-title">${phone.phone_name}</h5>
                     <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
                     </p>
-                    <button onclick="loadMoreInfo('${phone.slug}')" class="btn btn-primary"> More Information </button>
+                    <button onclick="loadMoreInfo('${phone.slug}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moreInfoModal"> More Information </button>
                 </div>
             </div>
         `;
@@ -76,6 +76,15 @@ const loadMoreInfo= async (id)=>{
 
 const DisplayMoreInformation=(data)=>{
     console.log(data);
+    const title = document.getElementById("ModalTitle");
+    title.innerText=data.name;
+
+    const body = document.getElementById("modal-Body");
+    body.innerHTML=`
+        <p> <strong> Display Size: </strong> ${data.mainFeatures.displaySize}</p>
+        <p> <strong> Memory: </strong> ${data.mainFeatures.memory}</p>
+        <p> <strong> Released Date: </strong> ${ data.releaseDate? data.releaseDate : "Not Realeased Wet"} </p>
+    `;
 }
 
 const isloading=(value)=>{
@@ -109,4 +118,4 @@ document.getElementById("btn-showAll").addEventListener("click",()=>{
 
 
 
-// loadData();
+loadData("iphone",12);
